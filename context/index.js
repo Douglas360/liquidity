@@ -9,7 +9,7 @@ import { Token } from "@uniswap/sdk-core";
 import { Pool, Position, nearestUsableTick } from "@uniswap/v3-sdk";
 import { abi as IUniswapV3PoolABI } from "@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json";
 import { abi as INonfungiblePositionManager } from "@uniswap/v3-periphery/artifacts/contracts/interfaces/INonfungiblePositionManager.sol/INonfungiblePositionManager.json";
-import ERC20ABI from "./abi.json";
+import ERC20_ABI from "./abi.json";
 
 //INTERNAL IMPORT
 import {
@@ -26,7 +26,7 @@ import {
   internalAddLiquidity,
   getBalance,
 } from "./constants";
-import { parseErrorMsg } from "./utils";
+import { parseErrorMsg } from "../Utils";
 
 export const CONTEXT = React.createContext();
 

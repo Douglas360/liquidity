@@ -1,10 +1,15 @@
 import "../styles/globals.css";
 
+//INTERNAL IMPORTS
+import { CONTEXT_Provider } from "../context";
+import toast, { Toaster } from "react-hot-toast";
+
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Component {...pageProps} />
-
+      <CONTEXT_Provider>
+        <Component {...pageProps} />
+      </CONTEXT_Provider>
       <script src="js/jquery-3.3.1.js"></script>
       <script src="js/js-plugins/leaflet.js"></script>
       <script src="js/js-plugins/MarkerClusterGroup.js"></script>
