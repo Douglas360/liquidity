@@ -95,6 +95,7 @@ const index = () => {
           <Loader />
         </div>
       )}
+      <Footer />
     </div>
   );
 };
