@@ -3,7 +3,7 @@ import React from "react";
 import { HeaderICON } from "./index";
 import { shortenAddress } from "../Utils";
 
-const Header = (setOpenAddPool, setOpenAllLiquidity, connect, address) => {
+const Header = ({ setOpenAddPool, setOpenAllLiquidity, connect, address }) => {
   return (
     <header className="header" id="site-header">
       <div className="container">
