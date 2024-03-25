@@ -6,7 +6,7 @@ const PoolInput = ({
   setPoolAddress,
   notifyError,
   notifySuccess,
-  LOAD_TOKENS,
+  LOAD_TOKEN,
   GET_POOL_ADDRESS,
 }) => {
   const [token_1, setToken_1] = useState();
@@ -18,9 +18,9 @@ const PoolInput = ({
 
   useEffect(() => {
     const loadTokens = async () => {
-      const token = await LOAD_TOKENS(token_B);
+      const token = await LOAD_TOKEN(token_B);
       if (token == undefined) {
-        console.log("Token not found");
+        //console.log("Token not found");
       } else {
         setToken_A(token);
       }
@@ -30,9 +30,10 @@ const PoolInput = ({
 
   useEffect(() => {
     const loadTokens = async () => {
-      const token = await LOAD_TOKENS(token_A);
+      const token = await LOAD_TOKEN(token_A);
+      console.log("INF-TOKEN: " + token);
       if (token == undefined) {
-        console.log("Token not found");
+        //console.log("Token not found");
       } else {
         setToken_B(token);
       }

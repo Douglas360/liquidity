@@ -30,7 +30,7 @@ const AddPool = ({
                   setPoolAddress={setPoolAddress}
                   notifyError={notifyError}
                   notifySuccess={notifySuccess}
-                  LOAD_TOKENS={LOAD_TOKEN}
+                  LOAD_TOKEN={LOAD_TOKEN}
                   GET_POOL_ADDRESS={GET_POOL_ADDRESS}
                 />
               )}

@@ -36,24 +36,16 @@ const fetchContract = (signer, ABI, ADDRESS) => {
 
 export const web3Provider = async () => {
   try {
-    const providerOptions = {
-      /* See Provider Options Section */
-    };
-
-    const web3Modal = new Web3Modal({
-      network: "mainnet", // optional
-      cacheProvider: true, // optional
-      providerOptions, // required
-    });
-
-    const provider = await web3Modal.connect();
-    return new ethers.providers.Web3Provider(provider);
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    return provider;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const CONNECTION_CONTRACT = async (ADDRESS) => {
+export const CONNECTING_CONTRACT = async (ADDRESS) => {
   try {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
@@ -67,7 +59,7 @@ export const CONNECTION_CONTRACT = async (ADDRESS) => {
     //USER ADDRESS
     const userAddress = await signer.getAddress();
     const balance = await contract.balanceOf(userAddress);
-
+    console.log(contract);
     const name = await contract.name();
     const symbol = await contract.symbol();
     const supply = await contract.totalSupply();
@@ -81,7 +73,8 @@ export const CONNECTION_CONTRACT = async (ADDRESS) => {
       supply: ethers.utils.formatEther(supply.toString()),
       decimals: decimals,
       balance: ethers.utils.formatEther(balance.toString()),
-      userAddress: userAddress,
+      //userAddress: userAddress,
+      chainId: network.chainId,
     };
 
     return token;

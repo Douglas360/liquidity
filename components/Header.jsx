@@ -45,7 +45,7 @@ const Header = ({ setOpenAddPool, setOpenAllLiquidity, connect, address }) => {
                 </a>
               ) : (
                 <a
-                  onClick={() => navigator.clipboard.writeText(address)}
+                  onClick={() => connect()}
                   className="btn btn--large btn--primary btn--transparent"
                 >
                   Connect Wallet

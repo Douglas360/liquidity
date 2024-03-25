@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ethers, Contract } from "ethers";
-import Web3Modal, { local } from "web3modal";
+import Web3Modal from "web3modal";
 import axios from "axios";
 import UniswapV3Pool from "@uniswap/v3-core/artifacts/contracts/UniswapV3Pool.sol/UniswapV3Pool.json";
 import toast from "react-hot-toast";
@@ -9,11 +9,11 @@ import { Token } from "@uniswap/sdk-core";
 import { Pool, Position, nearestUsableTick } from "@uniswap/v3-sdk";
 import { abi as IUniswapV3PoolABI } from "@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json";
 import { abi as INonfungiblePositionManager } from "@uniswap/v3-periphery/artifacts/contracts/interfaces/INonfungiblePositionManager.sol/INonfungiblePositionManager.json";
-import ERC20_ABI from "./abi.json";
+import ERC20ABI from "./abi.json";
 
 //INTERNAL IMPORT
 import {
-  ERC20ABI,
+  ERC20_ABI,
   TOKEN_ABI,
   V3_SWAP_ROUTER_ADDRESS,
   CONNECTING_CONTRACT,
@@ -31,7 +31,7 @@ import { parseErrorMsg } from "../Utils";
 export const CONTEXT = React.createContext();
 
 export const CONTEXT_Provider = ({ children }) => {
-  const DAPP_NAME = "Woox";
+  const DAPP_NAME = "Liquidity Daap";
   const [loader, setLoader] = useState(false);
   const [address, setAddress] = useState("");
   const [chainID, setChainID] = useState();
@@ -51,13 +51,13 @@ export const CONTEXT_Provider = ({ children }) => {
   const connect = async () => {
     try {
       if (!window.ethereum) {
-        notifyError("No wallet detected");
+        return notifyError("No wallet detected");
       }
 
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
-      if (accounts.length > 0) {
+      if (accounts.length) {
         setAddress(accounts[0]);
       } else {
         notifyError("No account found");
@@ -82,6 +82,7 @@ export const CONTEXT_Provider = ({ children }) => {
   };
 
   const LOAD_TOKEN = async (token) => {
+    //console.log("endereco DOT TOKEN: " + token);
     try {
       const tokenDetail = await CONNECTING_CONTRACT(token);
       return tokenDetail;
